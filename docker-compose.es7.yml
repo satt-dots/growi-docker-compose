@@ -30,6 +30,7 @@ services:
     restart: unless-stopped
     volumes:
       - growi_data:/data
+      - page_bulk_export_tmp:/tmp/page-bulk-export
 
   mongo:
     image: mongo:6.0
@@ -65,8 +66,15 @@ services:
       timeout: 5s
       retries: 6
 
+  pdf-converter:
+    image: weseek/growi-pdf-converter:1
+    restart: unless-stopped
+    volumes:
+      - page_bulk_export_tmp:/tmp/page-bulk-export
+
 volumes:
   growi_data:
   mongo_configdb:
   mongo_db:
   es_data:
+  page_bulk_export_tmp:
