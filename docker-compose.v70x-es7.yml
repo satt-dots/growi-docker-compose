@@ -68,7 +68,7 @@ services:
       retries: 6
 
   pdf-converter:
-    image: weseek/growi-pdf-converter:1
+    image: growilabs/pdf-converter:1
     restart: unless-stopped
     volumes:
       - page_bulk_export_tmp:/tmp/page-bulk-export
