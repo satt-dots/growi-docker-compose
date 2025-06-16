@@ -16,6 +16,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/growi
       - ELASTICSEARCH_URI=http://elasticsearch:9200/growi
+      - BULK_EXPORT_PDF_CONVERTER_URI=http://pdf-converter:3010
       - PASSWORD_SEED=changeme
       # - FILE_UPLOAD=mongodb   # activate this line if you use MongoDB GridFS rather than AWS
       # - FILE_UPLOAD=local     # activate this line if you use local storage of server rather than AWS
@@ -30,6 +31,7 @@ services:
     restart: unless-stopped
     volumes:
       - growi_data:/data
+      - page_bulk_export_tmp:/tmp/page-bulk-export
 
   mongo:
     image: mongo:6.0
@@ -65,8 +67,15 @@ services:
       timeout: 5s
       retries: 6
 
+  pdf-converter:
+    image: growilabs/pdf-converter:1
+    restart: unless-stopped
+    volumes:
+      - page_bulk_export_tmp:/tmp/page-bulk-export
+
 volumes:
   growi_data:
   mongo_configdb:
   mongo_db:
   es_data:
+  page_bulk_export_tmp:
