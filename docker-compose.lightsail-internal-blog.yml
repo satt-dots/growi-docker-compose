@@ -17,6 +17,8 @@ services:
       - MONGO_URI=mongodb://mongo:27017/growi
       - ELASTICSEARCH_URI=http://elasticsearch:9200/growi
       - PASSWORD_SEED=$PASSWORD_SEED
+      - AUDIT_LOG_ENABLED=true
+      - AUDIT_LOG_ACTION_GROUP_SIZE=LARGE
       # - FILE_UPLOAD=mongodb   # activate this line if you use MongoDB GridFS rather than AWS
       # - FILE_UPLOAD=local     # activate this line if you use local storage of server rather than AWS
       # - MATHJAX=1             # activate this line if you want to use MathJax
