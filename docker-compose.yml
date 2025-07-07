@@ -47,7 +47,7 @@ services:
 
   elasticsearch:
     build:
-      context: ./elasticsearch/v8
+      context: ./elasticsearch/v9
       dockerfile: ./Dockerfile
     environment:
       - bootstrap.memory_lock=true
@@ -60,7 +60,7 @@ services:
     restart: unless-stopped
     volumes:
       - es_data:/usr/share/elasticsearch/data
-      - ./elasticsearch/v8/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/v9/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9200"]
       interval: 10s
