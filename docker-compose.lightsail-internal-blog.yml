@@ -4,7 +4,8 @@ services:
   app:
     image: weseek/growi:7
     ports:
-      - 3000:3000
+      - 80:3000
+      - 443:3000
     links:
       - mongo:mongo
       - elasticsearch:elasticsearch
@@ -88,35 +89,8 @@ services:
         awslogs-create-group: 'true'
         awslogs-stream: elasticsearch
 
-  # a fully automated HTTPS server powered by Nginx, Let's Encrypt
-  # see https://github.com/SteveLTN/https-portal
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - '80:80'
-      - '443:443'
-    links:
-      - app:app
-    environment:
-      DOMAINS: 'internal-blog.satt-dots.net -> http://app:3000'
-      STAGE: 'production'
-      FORCE_RENEW: 'false'
-      WEBSOCKET: 'true'
-      CLIENT_MAX_BODY_SIZE: 0
-    restart: unless-stopped
-    volumes:
-      - https-portal_data:/var/lib/https-portal
-    logging:
-      driver: awslogs
-      options:
-        awslogs-region: ap-northeast-1
-        awslogs-group: /aws/lightsail/growi-internal-blog
-        awslogs-create-group: 'true'
-        awslogs-stream: https-portal
-
 volumes:
   growi_data:
   mongo_configdb:
   mongo_db:
   es_data:
-  https-portal_data:
