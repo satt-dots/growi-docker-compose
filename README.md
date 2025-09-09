@@ -111,7 +111,7 @@ Followings are **disabled** because they are overwritten by `docker-compose.yml`
 
 Change `docker-compose.yml` if you need.
 
-Others conform to [weseek/growi](https://github.com/growilabs/growi#environment-variables)
+Others conform to [growilabs/growi](https://github.com/growilabs/growi#environment-variables)
 
 
 More convenient Examples
