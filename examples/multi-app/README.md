@@ -9,7 +9,7 @@ Install and Start
 ### Build Image
 
 ```bash
-git clone https://github.com/weseek/growi-docker-compose.git growi
+git clone https://github.com/growilabs/growi-docker-compose.git growi
 cd growi
 docker build -t growimulti_app .
 ```
