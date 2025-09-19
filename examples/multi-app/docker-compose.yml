@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app-1:
-    image: weseek/growi:7
+    image: growilabs/growi:7
     ports:
       - 127.0.0.1:3001:3000
     links:
@@ -24,7 +24,7 @@ services:
       - growi_data_1:/data
 
   app-2:
-    image: weseek/growi:7
+    image: growilabs/growi:7
     ports:
       - 127.0.0.1:3002:3000
     links:
@@ -46,7 +46,7 @@ services:
       - growi_data_2:/data
 
   app-3:
-    image: weseek/growi:7
+    image: growilabs/growi:7
     ports:
       - 127.0.0.1:3003:3000
     links:
