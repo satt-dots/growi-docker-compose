@@ -80,7 +80,7 @@ docker compose stop
 
 # remove current container and images
 docker compose rm app
-docker rmi weseek/growi:7
+docker rmi growilabs/growi:7
 
 # rebuild app container image
 git pull
