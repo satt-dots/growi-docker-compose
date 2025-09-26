@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: weseek/growi:7
+    image: growilabs/growi:7
     ports:
       - 3000:3000
     links:
@@ -16,8 +16,8 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/growi
       - ELASTICSEARCH_URI=http://elasticsearch:9200/growi
-      - PASSWORD_SEED=$PASSWORD_SEED
       - BULK_EXPORT_PDF_CONVERTER_URI=http://pdf-converter:3010
+      - PASSWORD_SEED=$PASSWORD_SEED
       - AUDIT_LOG_ENABLED=true
       - AUDIT_LOG_ACTION_GROUP_SIZE=LARGE
       # - FILE_UPLOAD=mongodb   # activate this line if you use MongoDB GridFS rather than AWS
