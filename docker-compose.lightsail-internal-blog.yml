@@ -41,7 +41,9 @@ services:
         awslogs-stream: app
 
   mongo:
-    image: mongo:6.0
+    image: mongo:8.0
+    # For MongoDB 6.x
+    # image: mongo:6.0
     restart: unless-stopped
     volumes:
       - mongo_configdb:/data/configdb
