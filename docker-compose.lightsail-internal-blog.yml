@@ -17,6 +17,7 @@ services:
       - MONGO_URI=mongodb://mongo:27017/growi
       - ELASTICSEARCH_URI=http://elasticsearch:9200/growi
       - PASSWORD_SEED=$PASSWORD_SEED
+      - BULK_EXPORT_PDF_CONVERTER_URI=http://pdf-converter:3010
       - AUDIT_LOG_ENABLED=true
       - AUDIT_LOG_ACTION_GROUP_SIZE=LARGE
       # - FILE_UPLOAD=mongodb   # activate this line if you use MongoDB GridFS rather than AWS
@@ -32,6 +33,7 @@ services:
     restart: unless-stopped
     volumes:
       - growi_data:/data
+      - page_bulk_export_tmp:/tmp/page-bulk-export
     logging:
       driver: awslogs
       options:
@@ -94,6 +96,19 @@ services:
         awslogs-create-group: 'true'
         awslogs-stream: elasticsearch
 
+  pdf-converter:
+    image: growilabs/pdf-converter:1
+    restart: unless-stopped
+    volumes:
+      - page_bulk_export_tmp:/tmp/page-bulk-export
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ap-northeast-1
+        awslogs-group: /aws/lightsail/growi-internal-blog
+        awslogs-create-group: 'true'
+        awslogs-stream: pdf-converter
+
   # a fully automated HTTPS server powered by Nginx, Let's Encrypt
   # see https://github.com/SteveLTN/https-portal
   https-portal:
@@ -125,4 +140,5 @@ volumes:
   mongo_configdb:
   mongo_db:
   es_data:
+  page_bulk_export_tmp:
   https-portal_data:
